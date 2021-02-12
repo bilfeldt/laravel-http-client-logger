@@ -2,9 +2,9 @@
 
 namespace Bilfeldt\LaravelHttpClientLogger;
 
+use Bilfeldt\LaravelHttpClientLogger\Commands\LaravelHttpClientLoggerCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Bilfeldt\LaravelHttpClientLogger\Commands\LaravelHttpClientLoggerCommand;
 
 class LaravelHttpClientLoggerServiceProvider extends PackageServiceProvider
 {

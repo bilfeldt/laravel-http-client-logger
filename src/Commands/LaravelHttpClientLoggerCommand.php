@@ -1,12 +1,12 @@
 <?php
 
-namespace Spatie\Skeleton\Commands;
+namespace Bilfeldt\LaravelHttpClientLogger\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelHttpClientLoggerCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-http-client-logger';
 
     public $description = 'My command';
 

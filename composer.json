@@ -1,16 +1,16 @@
 {
-    "name": ":vendor_name/:package_name",
-    "description": ":package_description",
+    "name": "bilfeldt/laravel-http-client-logger",
+    "description": "A logger for the Laravel HTTP Client",
     "keywords": [
-        ":vendor_name",
-        ":package_name"
+        "bilfeldt",
+        "laravel-http-client-logger"
     ],
-    "homepage": "https://github.com/:vendor_name/:package_name",
+    "homepage": "https://github.com/bilfeldt/laravel-http-client-logger",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
+            "name": "Anders Bilfeldt",
+            "email": "abilfeldt@gmail.com",
             "role": "Developer"
         }
     ],
@@ -27,13 +27,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\Skeleton\\": "src",
-            "Spatie\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Bilfeldt\\LaravelHttpClientLogger\\": "src",
+            "Bilfeldt\\LaravelHttpClientLogger\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\Skeleton\\Tests\\": "tests"
+            "Bilfeldt\\LaravelHttpClientLogger\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -47,10 +47,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\Skeleton\\SkeletonServiceProvider"
+                "Bilfeldt\\LaravelHttpClientLogger\\LaravelHttpClientLoggerServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "Spatie\\Skeleton\\SkeletonFacade"
+                "LaravelHttpClientLogger": "Bilfeldt\\LaravelHttpClientLogger\\LaravelHttpClientLoggerFacade"
             }
         }
     },

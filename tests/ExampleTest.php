@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\Skeleton\Tests;
+namespace Bilfeldt\LaravelHttpClientLogger\Tests;
 
 class ExampleTest extends TestCase
 {

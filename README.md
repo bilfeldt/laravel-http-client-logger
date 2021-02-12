@@ -1,17 +1,16 @@
-# :package_description
+# A logger for the Laravel HTTP Client
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_name/:package_name.svg?style=flat-square)](https://packagist.org/packages/:vendor_name/:package_name)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/:vendor_name/:package_name/run-tests?label=tests)](https://github.com/:vendor_name/:package_name/actions?query=workflow%3ATests+branch%3Amaster)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/:vendor_name/:package_name/Check%20&%20fix%20styling?label=code%20style)](https://github.com/:vendor_name/:package_name/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_name/:package_name.svg?style=flat-square)](https://packagist.org/packages/:vendor_name/:package_name)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/bilfeldt/laravel-http-client-logger.svg?style=flat-square)](https://packagist.org/packages/bilfeldt/laravel-http-client-logger)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/bilfeldt/laravel-http-client-logger/run-tests?label=tests)](https://github.com/bilfeldt/laravel-http-client-logger/actions?query=workflow%3ATests+branch%3Amaster)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/bilfeldt/laravel-http-client-logger/Check%20&%20fix%20styling?label=code%20style)](https://github.com/bilfeldt/laravel-http-client-logger/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
+[![Total Downloads](https://img.shields.io/packagist/dt/bilfeldt/laravel-http-client-logger.svg?style=flat-square)](https://packagist.org/packages/bilfeldt/laravel-http-client-logger)
 
-**Note:** Run `./configure-skeleton` to get started, or manually replace  ```:author_name``` ```:author_username``` ```:author_email``` ```:vendor_name``` ```:package_name``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](.github/CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line. You can also run `configure-skeleton.sh` to do this automatically.
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
 ## Support us
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/package-skeleton-laravel.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/package-skeleton-laravel)
+[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/package-laravel-http-client-logger-laravel.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/package-laravel-http-client-logger-laravel)
 
 We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
 
@@ -22,19 +21,19 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 You can install the package via composer:
 
 ```bash
-composer require :vendor_name/:package_name
+composer require bilfeldt/laravel-http-client-logger
 ```
 
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --provider="Spatie\Skeleton\SkeletonServiceProvider" --tag=":package_name-migrations"
+php artisan vendor:publish --provider="Bilfeldt\LaravelHttpClientLogger\LaravelHttpClientLoggerServiceProvider" --tag="laravel-http-client-logger-migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="Spatie\Skeleton\SkeletonServiceProvider" --tag=":package_name-config"
+php artisan vendor:publish --provider="Bilfeldt\LaravelHttpClientLogger\LaravelHttpClientLoggerServiceProvider" --tag="laravel-http-client-logger-config"
 ```
 
 This is the contents of the published config file:
@@ -47,8 +46,8 @@ return [
 ## Usage
 
 ```php
-$skeleton = new Spatie\Skeleton();
-echo $skeleton->echoPhrase('Hello, Spatie!');
+$laravel-http-client-logger = new Bilfeldt\LaravelHttpClientLogger();
+echo $laravel-http-client-logger->echoPhrase('Hello, Bilfeldt!');
 ```
 
 ## Testing
@@ -71,7 +70,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Anders Bilfeldt](https://github.com/bilfeldt)
 - [All Contributors](../../contributors)
 
 ## License

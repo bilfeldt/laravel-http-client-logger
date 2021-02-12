@@ -2,9 +2,9 @@
 
 namespace Bilfeldt\LaravelHttpClientLogger\Tests;
 
+use Bilfeldt\LaravelHttpClientLogger\LaravelHttpClientLoggerServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Bilfeldt\LaravelHttpClientLogger\LaravelHttpClientLoggerServiceProvider;
 
 class TestCase extends Orchestra
 {

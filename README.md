@@ -3,7 +3,7 @@
 ![bilfeldt/laravel-http-client-logger](cover.jpg)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/bilfeldt/laravel-http-client-logger.svg?style=flat-square)](https://packagist.org/packages/bilfeldt/laravel-http-client-logger)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/bilfeldt/laravel-http-client-logger/run-tests?label=tests)](https://github.com/bilfeldt/laravel-http-client-logger/actions?query=workflow%3ATests+branch%3Amaster)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/bilfeldt/laravel-http-client-logger/tests?label=tests)](https://github.com/bilfeldt/laravel-http-client-logger/actions?query=workflow%3ATests+branch%3Amaster)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/bilfeldt/laravel-http-client-logger/Check%20&%20fix%20styling?label=code%20style)](https://github.com/bilfeldt/laravel-http-client-logger/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/bilfeldt/laravel-http-client-logger.svg?style=flat-square)](https://packagist.org/packages/bilfeldt/laravel-http-client-logger)
 

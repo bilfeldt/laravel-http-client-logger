@@ -11,5 +11,6 @@ interface HttpLoggerInterface
         RequestInterface $request,
         ResponseInterface $response,
         float $sec,
-        array $context = []): void;
+        array $context = []
+    ): void;
 }

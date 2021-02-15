@@ -36,7 +36,6 @@ class LoggingMiddleware
 
                 return $promise->then(
                     function (ResponseInterface $response) use ($context, $request, $start) {
-
                         $sec = microtime(true) - $start;
 
                         if ($this->filter->shouldLog($request, $response, $sec, $context)) {

@@ -37,6 +37,7 @@ class HttpLogger implements HttpLoggerInterface
             Log::channel($channel)->critical($message, $context);
         }
     }
+
     protected function messageToString(MessageInterface $message, array $placeholders): string
     {
         return strtr(Message::toString($message), $placeholders);

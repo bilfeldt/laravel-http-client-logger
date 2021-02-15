@@ -24,7 +24,7 @@ php artisan vendor:publish --provider="Bilfeldt\LaravelHttpClientLogger\LaravelH
 ```
 
 ## Usage
-Using the logger will log both the request, the response and the response time of request made with the [Larvel HTTP Client](https://laravel.com/docs/http-client).
+Using the logger will log both the request, the response and the response time of an external HTTP request made with the [Laravel HTTP Client](https://laravel.com/docs/http-client).
 
 ### Basic logging
 ```php

@@ -64,8 +64,8 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Credits
 
-- [Anders Bilfeldt](https://github.com/bilfeldt)
-- [All Contributors](../../contributors)
+- [Anders Bilfeldt](https://github.com/bilfeldt): Main package developer
+- [Henry Be](https://unsplash.com/photos/lc7xcWebECc): Cover image
 
 ## License
 

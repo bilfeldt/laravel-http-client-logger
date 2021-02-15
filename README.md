@@ -1,4 +1,6 @@
-# A logger for the Laravel HTTP Client
+# :open_file_folder: A logger for the Laravel HTTP Client
+
+![bilfeldt/laravel-http-client-logger](cover.jpg)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/bilfeldt/laravel-http-client-logger.svg?style=flat-square)](https://packagist.org/packages/bilfeldt/laravel-http-client-logger)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/bilfeldt/laravel-http-client-logger/run-tests?label=tests)](https://github.com/bilfeldt/laravel-http-client-logger/actions?query=workflow%3ATests+branch%3Amaster)

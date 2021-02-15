@@ -6,15 +6,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/bilfeldt/laravel-http-client-logger.svg?style=flat-square)](https://packagist.org/packages/bilfeldt/laravel-http-client-logger)
 
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/package-laravel-http-client-logger-laravel.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/package-laravel-http-client-logger-laravel)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+An easy yet very flexible logger for the Laravel HTTP Client.
 
 ## Installation
 
@@ -24,31 +16,41 @@ You can install the package via composer:
 composer require bilfeldt/laravel-http-client-logger
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --provider="Bilfeldt\LaravelHttpClientLogger\LaravelHttpClientLoggerServiceProvider" --tag="laravel-http-client-logger-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
+Optionally publish the config file with:
 ```bash
 php artisan vendor:publish --provider="Bilfeldt\LaravelHttpClientLogger\LaravelHttpClientLoggerServiceProvider" --tag="laravel-http-client-logger-config"
 ```
 
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
 ## Usage
+Using the logger will log both the request, the response and the response time of request made with the [Larvel HTTP Client](https://laravel.com/docs/http-client).
 
+### Basic logging
 ```php
-$laravel-http-client-logger = new Bilfeldt\LaravelHttpClientLogger();
-echo $laravel-http-client-logger->echoPhrase('Hello, Bilfeldt!');
+Http::log()->get('https://example.com'); // uses the configured logger and filter
 ```
+
+### Conditional logging
+This will log the request/response when the `$condition` evaluates to `true`.
+```php
+Http::logWhen($condition)->get('https://example.com'); // uses the configured logger and filter
+```
+
+### Logging context
+It is possible to supply context for the logger using:
+```php
+Http::log(['note' => 'Something to log'])->get('https://example.com');
+// or
+Http::logWhen($condition, ['note' => 'Something to log'])->get('https://example.com');
+```
+
+### Specifying a logger
+The default logger and filter are specified in the package configuration `logger` and `filter` respectively but can be changed at runtime using:
+```php
+Http::log($context, $logger, $filter)->get('https://example.com');
+// or
+Http::logWhen($condition, $context, $logger, $filter)->get('https://example.com');
+```
+Note that the logger must implement `HttpLoggerInterface` while the filter must implement `HttpLoggingFilterInterface`.
 
 ## Testing
 
@@ -59,14 +61,6 @@ composer test
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
 ## Credits
 

@@ -3,18 +3,21 @@
 namespace Bilfeldt\LaravelHttpClientLogger\Tests;
 
 use Bilfeldt\LaravelHttpClientLogger\LaravelHttpClientLoggerServiceProvider;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 
-class TestCase extends Orchestra
+abstract class TestCase extends Orchestra
 {
     public function setUp(): void
     {
+        ray()->newScreen("Test {$this->getName()}");
+
         parent::setUp();
 
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Bilfeldt\\LaravelHttpClientLogger\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
+        config()->set('http-client-logger.filter_2xx', true);
+        config()->set('http-client-logger.filter_3xx', true);
+        config()->set('http-client-logger.filter_4xx', true);
+        config()->set('http-client-logger.filter_5xx', true);
+        config()->set('http-client-logger.filter_slow', true);
     }
 
     protected function getPackageProviders($app)
@@ -22,20 +25,5 @@ class TestCase extends Orchestra
         return [
             LaravelHttpClientLoggerServiceProvider::class,
         ];
-    }
-
-    public function getEnvironmentSetUp($app)
-    {
-        $app['config']->set('database.default', 'sqlite');
-        $app['config']->set('database.connections.sqlite', [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-            'prefix' => '',
-        ]);
-
-        /*
-        include_once __DIR__.'/../database/migrations/create_laravel_http_client_logger_table.php.stub';
-        (new \CreatePackageTable())->up();
-        */
     }
 }

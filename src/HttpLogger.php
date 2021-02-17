@@ -31,8 +31,7 @@ class HttpLogger implements HttpLoggerInterface
         ResponseInterface $response,
         float $sec,
         array $context = []
-    ): void
-    {
+    ): void {
         $this->request = $request;
         $this->response = $response;
         $this->sec = $sec;

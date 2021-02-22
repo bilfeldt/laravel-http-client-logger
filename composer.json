@@ -3,7 +3,12 @@
     "description": "A logger for the Laravel HTTP Client",
     "keywords": [
         "bilfeldt",
-        "laravel-http-client-logger"
+        "laravel-http-client-logger",
+        "laravel",
+        "guzzle",
+        "log",
+        "logging",
+        "psr3"
     ],
     "homepage": "https://github.com/bilfeldt/laravel-http-client-logger",
     "license": "MIT",

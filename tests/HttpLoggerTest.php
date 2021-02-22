@@ -3,6 +3,7 @@
 namespace Bilfeldt\LaravelHttpClientLogger\Tests;
 
 use Bilfeldt\LaravelHttpClientLogger\HttpLogger;
+use Bilfeldt\LaravelHttpClientLogger\PsrMessageToStringConverter;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Facades\Log;
@@ -19,7 +20,7 @@ class HttpLoggerTest extends TestCase
     {
         parent::setUp();
 
-        $this->logger = new HttpLogger();
+        $this->logger = new HttpLogger(new PsrMessageToStringConverter);
         $this->request = new Request('GET', 'https://example.com/path?query=ABCDEF', ['header1' => 'HIJKL'], 'TestRequestBody');
     }
 

@@ -47,7 +47,7 @@ class LaravelHttpClientLoggerServiceProvider extends PackageServiceProvider
             ?HttpLoggerInterface $logger = null,
             ?HttpLoggingFilterInterface $filter = null
         ) {
-            if ($condition) {
+            if (value($condition)) {
                 return $this->log($context, $logger, $filter);
             } else {
                 return $this;

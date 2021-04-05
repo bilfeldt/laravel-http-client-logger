@@ -119,7 +119,7 @@ class HttpLoggerTest extends TestCase
     {
         Log::swap(new LogFake);
 
-        $this->logger->log($this->request, new Response(200), 0.2, ['test123', 'replace' => ['example.com' => 'mock.org']]);
+        $this->logger->log($this->request, new Response(200), 0.2, ['test123'], ['replace' => ['example.com' => 'mock.org']]);
 
         Log::assertLogged('debug', function ($message, $context) {
             return Str::contains($message, 'mock.org')
@@ -132,7 +132,7 @@ class HttpLoggerTest extends TestCase
     {
         Log::swap(new LogFake);
 
-        $this->logger->log($this->request, new Response(200, [], 'My name is John Doe'), 0.2, ['test123', 'replace' => ['Doe' => 'Smith']]);
+        $this->logger->log($this->request, new Response(200, [], 'My name is John Doe'), 0.2, ['test123'], ['replace' => ['Doe' => 'Smith']]);
 
         Log::assertLogged('debug', function ($message, $context) {
             return Str::contains($message, 'Smith')

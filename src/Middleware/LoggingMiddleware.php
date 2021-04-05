@@ -26,20 +26,20 @@ class LoggingMiddleware
      * @param array $context
      * @return callable(RequestInterface, array): PromiseInterface
      */
-    public function __invoke($context = []): callable
+    public function __invoke($context = [], $config = []): callable
     {
-        return function (callable $handler) use ($context): callable {
-            return function (RequestInterface $request, array $options) use ($context, $handler): PromiseInterface {
+        return function (callable $handler) use ($context, $config): callable {
+            return function (RequestInterface $request, array $options) use ($context, $config, $handler): PromiseInterface {
                 $start = microtime(true);
 
                 $promise = $handler($request, $options);
 
                 return $promise->then(
-                    function (ResponseInterface $response) use ($context, $request, $start) {
+                    function (ResponseInterface $response) use ($context, $config, $request, $start) {
                         $sec = microtime(true) - $start;
 
-                        if ($this->filter->shouldLog($request, $response, $sec, $context)) {
-                            $this->logger->log($request, $response, $sec, $context);
+                        if ($this->filter->shouldLog($request, $response, $sec, $context, $config)) {
+                            $this->logger->log($request, $response, $sec, $context, $config);
                         }
 
                         return $response;

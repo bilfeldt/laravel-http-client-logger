@@ -14,6 +14,11 @@ class MacroTest extends TestCase
         // TODO: Implement
     }
 
+    public function test_log_with_config()
+    {
+        // TODO: Implement
+    }
+
     public function test_log_with_logger()
     {
         // TODO: Implement

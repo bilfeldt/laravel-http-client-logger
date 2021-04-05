@@ -12,6 +12,7 @@ interface HttpLoggingFilterInterface
         RequestInterface $request,
         ResponseInterface $response,
         float $sec,
-        array $context = []
+        array $context = [],
+        array $config = []
     ): bool;
 }

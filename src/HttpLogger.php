@@ -17,8 +17,7 @@ class HttpLogger implements HttpLoggerInterface
     protected ResponseInterface $response;
     protected float $sec;
     protected array $context;
-    protected array $replace;
-    protected string $filename;
+    protected array $config;
     protected string $fileExt = '.txt';
 
     public function __construct(PsrMessageToStringConverter $psrMessageStringConverter)
@@ -30,46 +29,42 @@ class HttpLogger implements HttpLoggerInterface
         RequestInterface $request,
         ResponseInterface $response,
         float $sec,
-        array $context = []
+        array $context = [],
+        array $config = []
     ): void {
         $this->request = $request;
         $this->response = $response;
         $this->sec = $sec;
-        $this->replace = $this->getReplace($context);
-        $this->filename = $this->getFileName($context);
-        $this->context = $this->getContextCleaned($context); // must be called after the two above since the $context array is modified
+        $this->context = $context;
+        $this->config = array_replace_recursive(config('http-client-logger'), $config); // Note this does not work optimally!
 
-        if (config('http-client-logger.log_to_channel.enabled')) {
-            $this->logToChannel(config('http-client-logger.log_to_channel.channel') ?? config('logging.default'));
+        if (Arr::get($this->config, 'log_to_channel.enabled')) {
+            $this->logToChannel(Arr::get($this->config, 'log_to_channel.channel') ?? config('logging.default'));
         }
 
-        if (config('http-client-logger.log_to_disk.enabled')) {
-            $this->logToDisk(config('http-client-logger.log_to_disk.disk') ?? config('filesystems.default'));
+        if (Arr::get($this->config, 'log_to_disk.enabled')) {
+            $this->logToDisk(Arr::get($this->config, 'log_to_disk.disk') ?? config('filesystems.default'));
         }
     }
 
-    protected function getContextCleaned(array $context): array
+    protected function getReplace(): array
     {
-        return Arr::except($context, ['replace', 'filename']);
+        return Arr::get($this->config, 'replace', []);
     }
 
-    protected function getReplace(array $context): array
+    protected function getFileName(): string
     {
-        return Arr::get($context, 'replace', []);
-    }
-
-    protected function getFileName(array $context): string
-    {
-        return Arr::get($context, 'filename', now()->format('Y-m-d-Hisu'));
+        return (Arr::get($this->config, 'log_to_disk.timestamp') ? now()->format(Arr::get($this->config, 'log_to_disk.timestamp')) : '')
+            .Arr::get($this->config, 'log_to_disk.filename');
     }
 
     protected function getMessage(): string
     {
         return "Time {$this->sec}sec\r\n"
             ."Request\r\n"
-            .$this->psrMessageStringConverter->toString($this->request, $this->replace)."\r\n"
+            .$this->psrMessageStringConverter->toString($this->request, $this->getReplace())."\r\n"
             ."Response\r\n"
-            .$this->psrMessageStringConverter->toString($this->response, $this->replace);
+            .$this->psrMessageStringConverter->toString($this->response, $this->getReplace());
     }
 
     protected function logToChannel(string $channel): void
@@ -87,18 +82,18 @@ class HttpLogger implements HttpLoggerInterface
 
     protected function logToDisk(string $disk): void
     {
-        if (config('http-client-logger.log_to_disk.separate')) {
+        if (Arr::get($this->config, 'log_to_disk.separate')) {
             Storage::disk($disk)->put(
-                $this->filename.'-request'.Str::start($this->fileExt, '.'),
-                $this->psrMessageStringConverter->toString($this->request, $this->replace)
+                $this->getFileName().'-request'.Str::start($this->fileExt, '.'),
+                $this->psrMessageStringConverter->toString($this->request, $this->getReplace())
             );
             Storage::disk($disk)->put(
-                $this->filename.'-response'.Str::start($this->fileExt, '.'),
-                $this->psrMessageStringConverter->toString($this->response, $this->replace)
+                $this->getFileName().'-response'.Str::start($this->fileExt, '.'),
+                $this->psrMessageStringConverter->toString($this->response, $this->getReplace())
             );
         } else {
             Storage::disk($disk)->put(
-                $this->filename.Str::start($this->fileExt, '.'),
+                $this->getFileName().Str::start($this->fileExt, '.'),
                 $this->getMessage()
             );
         }

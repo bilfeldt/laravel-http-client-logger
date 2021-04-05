@@ -32,23 +32,25 @@ class LaravelHttpClientLoggerServiceProvider extends PackageServiceProvider
     {
         PendingRequest::macro('log', function (
             $context = [],
+            $config = [],
             ?HttpLoggerInterface $logger = null,
             ?HttpLoggingFilterInterface $filter = null
         ) {
             return $this->withMiddleware((new LoggingMiddleware(
                 $logger ?? resolve(HttpLoggerInterface::class),
                 $filter ?? resolve(HttpLoggingFilterInterface::class)
-            ))->__invoke($context));
+            ))->__invoke($context, $config));
         });
 
         PendingRequest::macro('logWhen', function (
             $condition,
             $context = [],
+            $config = [],
             ?HttpLoggerInterface $logger = null,
             ?HttpLoggingFilterInterface $filter = null
         ) {
             if ($condition) {
-                return $this->log($context, $logger, $filter);
+                return $this->log($context, $config, $logger, $filter);
             } else {
                 return $this;
             }

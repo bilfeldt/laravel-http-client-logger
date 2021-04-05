@@ -35,15 +35,17 @@ return [
     |
     */
     'filtering' => [
-        '2xx' => true,
+        'always' => env('HTTP_CLIENT_LOGGER_FILTERING_ALWAYS', false),
 
-        '3xx' => true,
+        '2xx' => env('HTTP_CLIENT_LOGGER_FILTERING_2XX', true),
 
-        '4xx' => true,
+        '3xx' => env('HTTP_CLIENT_LOGGER_FILTERING_3XX', true),
 
-        '5xx' => true,
+        '4xx' => env('HTTP_CLIENT_LOGGER_FILTERING_4XX', true),
 
-        'slow' => 1.5, // Log requests that took longer than the setting (in sec)
+        '5xx' => env('HTTP_CLIENT_LOGGER_FILTERING_5XX', true),
+
+        'slow' => env('HTTP_CLIENT_LOGGER_FILTERING_SLOW', 1.5), // Log requests that took longer than the setting (in sec)
     ],
 
     /*
@@ -83,7 +85,9 @@ return [
     */
     'log_to_disk' => [
         'enabled' => env('HTTP_CLIENT_LOGGER_DISK_LOG_ENABLED', true),
-        'disk' => env('HTTP_CLIENT_LOGGER_DISK'), // uses the default filesystem disk unless specified
+        'disk' => env('HTTP_CLIENT_LOGGER_DISK'), // uses the default filesystem disk if none is specified
         'separate' => true,
+        'timestamp' => 'Y-m-d-Hisu', // Leaving empty will remove the timestamp
+        'filename' => '',
     ],
 ];

@@ -83,7 +83,9 @@ return [
     */
     'log_to_disk' => [
         'enabled' => env('HTTP_CLIENT_LOGGER_DISK_LOG_ENABLED', true),
-        'disk' => env('HTTP_CLIENT_LOGGER_DISK'), // uses the default filesystem disk unless specified
+        'disk' => env('HTTP_CLIENT_LOGGER_DISK'), // uses the default filesystem disk if none is specified
         'separate' => true,
+        'timestamp' => 'Y-m-d-Hisu', // Leaving empty will remove the timestamp
+        'filename' => '',
     ],
 ];

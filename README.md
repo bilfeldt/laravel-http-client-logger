@@ -45,12 +45,20 @@ Http::log(['note' => 'Something to log'])->get('https://example.com');
 Http::logWhen($condition, ['note' => 'Something to log'])->get('https://example.com');
 ```
 
+### Providing on-demand configuration
+It is possible to provide on-demand configuration which will override the package configuration specified in `config/laravel-http-client-logger.php`:
+```php
+Http::log($context, ['example-config-key' => 'value'])->get('https://example.com');
+// or
+Http::logWhen($condition, $context, ['example-config-key' => 'value'])->get('https://example.com');
+```
+
 ### Specifying a logger
 The default logger and filter are specified in the package configuration `logger` and `filter` respectively but can be changed at runtime using:
 ```php
-Http::log($context, $logger, $filter)->get('https://example.com');
+Http::log($context, $config, $logger, $filter)->get('https://example.com');
 // or
-Http::logWhen($condition, $context, $logger, $filter)->get('https://example.com');
+Http::logWhen($condition, $context, $config, $logger, $filter)->get('https://example.com');
 ```
 Note that the logger must implement `HttpLoggerInterface` while the filter must implement `HttpLoggingFilterInterface`.
 

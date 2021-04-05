@@ -18,6 +18,10 @@ class HttpLoggingFilter implements HttpLoggingFilterInterface
             return false;
         }
 
+        if (config('http-client-logger.filtering.always')) {
+            return true;
+        }
+
         if (config('http-client-logger.filtering.2xx') && $response->getStatusCode() >= 200 && $response->getStatusCode() < 300) {
             return true;
         }

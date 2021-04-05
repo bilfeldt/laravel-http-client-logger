@@ -26,6 +26,9 @@ The following changes are required when updating:
 ### 0.3.0
 
 - Add on-demand configuration array (breaking change)
+- Fix evaluation of closures in `logWhen` macro
+- Add environmental variables for filtering options
+- Add new filtering option for enabling all logging
 
 ### 0.2.0
 

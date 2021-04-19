@@ -54,6 +54,7 @@ class LaravelHttpClientLoggerServiceProvider extends PackageServiceProvider
                 /** @var \Illuminate\Http\Client\PendingRequest $this */
                 return $this->log($context, $config, $logger, $filter);
             } else {
+                /** @var \Illuminate\Http\Client\PendingRequest $this */
                 return $this;
             }
         });

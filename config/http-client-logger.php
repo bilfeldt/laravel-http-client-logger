@@ -34,7 +34,7 @@ return [
     | that these settings are only used by the default filter.
     |
     */
-    'filter_always' => env('HTTP_CLIENT_LOGGER_FILTER_ALL', false),
+    'filter_all' => env('HTTP_CLIENT_LOGGER_FILTER_ALL', false),
 
     'filter_2xx' => env('HTTP_CLIENT_LOGGER_FILTER_2XX', true),
 

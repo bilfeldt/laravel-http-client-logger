@@ -18,7 +18,7 @@ class HttpLoggingFilter implements HttpLoggingFilterInterface
             return false;
         }
 
-        if (config('http-client-logger.filter_always')) {
+        if (config('http-client-logger.filter_all')) {
             return true;
         }
 

@@ -51,6 +51,11 @@ The following changes are required when updating:
 
 ## Changes
 
+### 1.0.0
+
+- Release first stable release
+- Flatten configuration (breaking change)
+
 ### 0.3.0
 
 - Add on-demand configuration array (breaking change)

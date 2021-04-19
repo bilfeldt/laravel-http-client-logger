@@ -18,27 +18,27 @@ class HttpLoggingFilter implements HttpLoggingFilterInterface
             return false;
         }
 
-        if (config('http-client-logger.filtering.always')) {
+        if (config('http-client-logger.filter_always')) {
             return true;
         }
 
-        if (config('http-client-logger.filtering.2xx') && $response->getStatusCode() >= 200 && $response->getStatusCode() < 300) {
+        if (config('http-client-logger.filter_2xx') && $response->getStatusCode() >= 200 && $response->getStatusCode() < 300) {
             return true;
         }
 
-        if (config('http-client-logger.filtering.3xx') && $response->getStatusCode() >= 300 && $response->getStatusCode() < 400) {
+        if (config('http-client-logger.filter_3xx') && $response->getStatusCode() >= 300 && $response->getStatusCode() < 400) {
             return true;
         }
 
-        if (config('http-client-logger.filtering.4xx') && $response->getStatusCode() >= 400 && $response->getStatusCode() < 500) {
+        if (config('http-client-logger.filter_4xx') && $response->getStatusCode() >= 400 && $response->getStatusCode() < 500) {
             return true;
         }
 
-        if (config('http-client-logger.filtering.5xx') && $response->getStatusCode() >= 500 && $response->getStatusCode() < 600) {
+        if (config('http-client-logger.filter_5xx') && $response->getStatusCode() >= 500 && $response->getStatusCode() < 600) {
             return true;
         }
 
-        if (config('http-client-logger.filtering.slow') < $sec) {
+        if (config('http-client-logger.filter_slow') < $sec) {
             return true;
         }
 

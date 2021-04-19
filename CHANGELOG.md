@@ -4,6 +4,34 @@ All notable changes to `laravel-http-client-logger` will be documented in this f
 
 ## Upgrade guides
 
+### 0.3.0 => 1.0.0
+
+This release flattens the configuration variables. It is suggested to republish the configuration after upgrading.
+
+- `filtering.always` is renamed to `filter_all`
+- `filtering.2xx` is renamed to `filter_2xx`
+- `filtering.3xx` is renamed to `filter_3xx`
+- `filtering.4xx` is renamed to `filter_4xx`
+- `filtering.5xx` is renamed to `filter_5xx`
+- `filtering.slow` is renamed to `filter_slow`
+- `log_to_channel.enabled` has been removed, instead logging to channel is enabled when a channel is provided
+- `log_to_channel.channel` is renamed to `channel`
+- `log_to_disk.enabled` has been removed, instead logging to disk is enabled when a disk is provided
+- `log_to_disk.disk` is renamed to `disk`
+- `log_to_disk.separate` is renamed to `disk_separate_files`
+- `log_to_disk.timestamp` is renamed to `prefix_timestamp`
+- `log_to_disk.filename` is renamed to `filename`
+
+The following environment variables have been renamed:
+- `HTTP_CLIENT_LOGGER_FILTERING_ALWAYS` is renamed to `HTTP_CLIENT_LOGGER_FILTER_ALL`
+- `HTTP_CLIENT_LOGGER_FILTERING_2XX` is renamed to `HTTP_CLIENT_LOGGER_FILTER_2XX`
+- `HTTP_CLIENT_LOGGER_FILTERING_3XX` is renamed to `HTTP_CLIENT_LOGGER_FILTER_3XX`
+- `HTTP_CLIENT_LOGGER_FILTERING_4XX` is renamed to `HTTP_CLIENT_LOGGER_FILTER_4XX`
+- `HTTP_CLIENT_LOGGER_FILTERING_5XX` is renamed to `HTTP_CLIENT_LOGGER_FILTER_5XX`
+- `HTTP_CLIENT_LOGGER_FILTERING_SLOW` is renamed to `HTTP_CLIENT_LOGGER_FILTER_SLOW`
+- `HTTP_CLIENT_LOGGER_CHANNEL_LOG_ENABLED` removed in favor of `HTTP_CLIENT_LOGGER_CHANNEL`
+- `HTTP_CLIENT_LOGGER_DISK_LOG_ENABLED` removed in favor of `HTTP_CLIENT_LOGGER_DISK`
+
 ### 0.2.0 => 0.3.0
 
 This release includes breaking changes:

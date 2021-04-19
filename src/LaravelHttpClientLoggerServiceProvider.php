@@ -36,6 +36,7 @@ class LaravelHttpClientLoggerServiceProvider extends PackageServiceProvider
             ?HttpLoggerInterface $logger = null,
             ?HttpLoggingFilterInterface $filter = null
         ) {
+            /** @var \Illuminate\Http\Client\PendingRequest $this */
             return $this->withMiddleware((new LoggingMiddleware(
                 $logger ?? resolve(HttpLoggerInterface::class),
                 $filter ?? resolve(HttpLoggingFilterInterface::class)
@@ -50,6 +51,7 @@ class LaravelHttpClientLoggerServiceProvider extends PackageServiceProvider
             ?HttpLoggingFilterInterface $filter = null
         ) {
             if (value($condition)) {
+                /** @var \Illuminate\Http\Client\PendingRequest $this */
                 return $this->log($context, $config, $logger, $filter);
             } else {
                 return $this;

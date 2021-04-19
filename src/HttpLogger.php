@@ -36,14 +36,14 @@ class HttpLogger implements HttpLoggerInterface
         $this->response = $response;
         $this->sec = $sec;
         $this->context = $context;
-        $this->config = array_replace_recursive(config('http-client-logger'), $config); // Note this does not work optimally!
+        $this->config = array_merge(config('http-client-logger'), $config);
 
-        if (Arr::get($this->config, 'log_to_channel.enabled')) {
-            $this->logToChannel(Arr::get($this->config, 'log_to_channel.channel') ?? config('logging.default'));
+        if (Arr::get($this->config, 'channel')) {
+            $this->logToChannel(($channel = Arr::get($this->config, 'channel')) == 'default' ? config('logging.default') : $channel);
         }
 
-        if (Arr::get($this->config, 'log_to_disk.enabled')) {
-            $this->logToDisk(Arr::get($this->config, 'log_to_disk.disk') ?? config('filesystems.default'));
+        if (Arr::get($this->config, 'disk')) {
+            $this->logToDisk(($disk = Arr::get($this->config, 'disk')) == 'default' ? config('filesystems.default') : $disk);
         }
     }
 
@@ -54,8 +54,8 @@ class HttpLogger implements HttpLoggerInterface
 
     protected function getFileName(): string
     {
-        return (Arr::get($this->config, 'log_to_disk.timestamp') ? now()->format(Arr::get($this->config, 'log_to_disk.timestamp')) : '')
-            .Arr::get($this->config, 'log_to_disk.filename');
+        return (Arr::get($this->config, 'prefix_timestamp') ? now()->format(Arr::get($this->config, 'prefix_timestamp')) : '')
+            .Arr::get($this->config, 'filename');
     }
 
     protected function getMessage(): string
@@ -82,7 +82,7 @@ class HttpLogger implements HttpLoggerInterface
 
     protected function logToDisk(string $disk): void
     {
-        if (Arr::get($this->config, 'log_to_disk.separate')) {
+        if (Arr::get($this->config, 'disk_separate_files')) {
             Storage::disk($disk)->put(
                 $this->getFileName().'-request'.Str::start($this->fileExt, '.'),
                 $this->psrMessageStringConverter->toString($this->request, $this->getReplace())

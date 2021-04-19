@@ -34,19 +34,17 @@ return [
     | that these settings are only used by the default filter.
     |
     */
-    'filtering' => [
-        'always' => env('HTTP_CLIENT_LOGGER_FILTERING_ALWAYS', false),
+    'filter_always' => env('HTTP_CLIENT_LOGGER_FILTER_ALL', false),
 
-        '2xx' => env('HTTP_CLIENT_LOGGER_FILTERING_2XX', true),
+    'filter_2xx' => env('HTTP_CLIENT_LOGGER_FILTER_2XX', true),
 
-        '3xx' => env('HTTP_CLIENT_LOGGER_FILTERING_3XX', true),
+    'filter_3xx' => env('HTTP_CLIENT_LOGGER_FILTER_3XX', true),
 
-        '4xx' => env('HTTP_CLIENT_LOGGER_FILTERING_4XX', true),
+    'filter_4xx' => env('HTTP_CLIENT_LOGGER_FILTER_4XX', true),
 
-        '5xx' => env('HTTP_CLIENT_LOGGER_FILTERING_5XX', true),
+    'filter_5xx' => env('HTTP_CLIENT_LOGGER_FILTER_5XX', true),
 
-        'slow' => env('HTTP_CLIENT_LOGGER_FILTERING_SLOW', 1.5), // Log requests that took longer than the setting (in sec)
-    ],
+    'filter_slow' => env('HTTP_CLIENT_LOGGER_FILTER_SLOW', 1.5), // Log requests that took longer than the setting (in sec)
 
     /*
     |--------------------------------------------------------------------------
@@ -62,32 +60,27 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Logger to channel
+    | Log to channel
     |--------------------------------------------------------------------------
     |
     | These settings determine how to log request/responses to the Laravel log.
     | Note that these settings are only used by the default logger.
+    | Set to false to disable the channel logging.
     |
     */
-    'log_to_channel' => [
-        'enabled' => env('HTTP_CLIENT_LOGGER_CHANNEL_LOG_ENABLED', true),
-        'channel' => env('HTTP_CLIENT_LOGGER_CHANNEL'), // Uses the default log channel unless specified
-    ],
+    'channel' => env('HTTP_CLIENT_LOGGER_CHANNEL', 'default'),
 
     /*
     |--------------------------------------------------------------------------
-    | Logger to disk
+    | Log to disk
     |--------------------------------------------------------------------------
     |
     | These settings determine how to log request/responses to a flysystem disk.
     | Note that these settings are only used by the default logger.
     |
     */
-    'log_to_disk' => [
-        'enabled' => env('HTTP_CLIENT_LOGGER_DISK_LOG_ENABLED', true),
-        'disk' => env('HTTP_CLIENT_LOGGER_DISK'), // uses the default filesystem disk if none is specified
-        'separate' => true,
-        'timestamp' => 'Y-m-d-Hisu', // Leaving empty will remove the timestamp
-        'filename' => '',
-    ],
+    'disk' => env('HTTP_CLIENT_LOGGER_DISK', false),
+    'disk_separate_files' => true,
+    'prefix_timestamp' => 'Y-m-d-Hisu', // Leaving empty will remove the timestamp
+    'filename' => '',
 ];

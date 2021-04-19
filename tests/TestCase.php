@@ -13,11 +13,11 @@ abstract class TestCase extends Orchestra
 
         parent::setUp();
 
-        config()->set('http-client-logger.filtering.2xx', true);
-        config()->set('http-client-logger.filtering.3xx', true);
-        config()->set('http-client-logger.filtering.4xx', true);
-        config()->set('http-client-logger.filtering.5xx', true);
-        config()->set('http-client-logger.filtering.slow', true);
+        config()->set('http-client-logger.filter_2xx', true);
+        config()->set('http-client-logger.filter_3xx', true);
+        config()->set('http-client-logger.filter_4xx', true);
+        config()->set('http-client-logger.filter_5xx', true);
+        config()->set('http-client-logger.filter_slow', true);
     }
 
     protected function getPackageProviders($app)

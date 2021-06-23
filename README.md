@@ -17,8 +17,68 @@ You can install the package via composer:
 ```bash
 composer require bilfeldt/laravel-http-client-logger
 ```
+Or install only in develop dependencies
+```bash
+composer require --dev  bilfeldt/laravel-http-client-logger
+```
 
-Optionally publish the config file with:
+### Laravel
+
+This package makes use of [Laravels package auto-discovery mechanism](https://medium.com/@taylorotwell/package-auto-discovery-in-laravel-5-5-ea9e3ab20518).
+
+If for some reason you want manually control this:
+- add the package to the `extra.laravel.dont-discover` key in `composer.json`, e.g.
+  ```json
+  "extra": {
+    "laravel": {
+      "dont-discover": [
+        "bilfeldt/laravel-http-client-logger"
+      ]
+    }
+  }
+  ```
+- if don't use Laravel's package auto-discovery or you use dont-discover key
+  - add the following class to the `providers` array in `config/app.php`:
+    ```php
+    <?php
+    // config/app.php
+    return [
+        // ...
+        'providers' => [
+            // ...
+            Bilfeldt\LaravelHttpClientLogger\LaravelHttpClientLoggerServiceProvider::class
+        ]
+        // ...
+    ];
+    ```
+  - if you want to manually load it only in non-production environments, instead you can add this to your `AppServiceProvider` with the `register()` method:
+    ```php
+    public function register()
+    {
+        if ($this->app->isLocal()) {
+            $this->app->register(\Bilfeldt\LaravelHttpClientLogger\LaravelHttpClientLoggerServiceProvider::class);
+        }
+        // ...
+    }
+    ```  
+
+### Lumen
+
+If you use Lumen add the following service provider in `bootstrap/app.php`:
+
+```php
+<?php
+// bootstrap/app.php
+
+$app->register(Bilfeldt\LaravelHttpClientLogger\LaravelHttpClientLoggerServiceProvider::class);
+
+// If you want to use the Facades provided by the package
+$app->withFacades();
+```
+
+### Config
+
+Optionally in Laravel publish the config file with:
 ```bash
 php artisan vendor:publish --provider="Bilfeldt\LaravelHttpClientLogger\LaravelHttpClientLoggerServiceProvider" --tag="laravel-http-client-logger-config"
 ```

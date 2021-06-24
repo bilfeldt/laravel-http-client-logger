@@ -17,54 +17,16 @@ You can install the package via composer:
 ```bash
 composer require bilfeldt/laravel-http-client-logger
 ```
-Or install only in develop dependencies
-```bash
-composer require --dev  bilfeldt/laravel-http-client-logger
-```
 
 ### Laravel
 
-This package makes use of [Laravels package auto-discovery mechanism](https://medium.com/@taylorotwell/package-auto-discovery-in-laravel-5-5-ea9e3ab20518).
-
-If for some reason you want manually control this:
-- add the package to the `extra.laravel.dont-discover` key in `composer.json`, e.g.
-  ```json
-  "extra": {
-    "laravel": {
-      "dont-discover": [
-        "bilfeldt/laravel-http-client-logger"
-      ]
-    }
-  }
-  ```
-- if don't use Laravel's package auto-discovery or you use dont-discover key
-  - add the following class to the `providers` array in `config/app.php`:
-    ```php
-    <?php
-    // config/app.php
-    return [
-        // ...
-        'providers' => [
-            // ...
-            Bilfeldt\LaravelHttpClientLogger\LaravelHttpClientLoggerServiceProvider::class
-        ]
-        // ...
-    ];
-    ```
-  - if you want to manually load it only in non-production environments, instead you can add this to your `AppServiceProvider` with the `register()` method:
-    ```php
-    public function register()
-    {
-        if ($this->app->isLocal()) {
-            $this->app->register(\Bilfeldt\LaravelHttpClientLogger\LaravelHttpClientLoggerServiceProvider::class);
-        }
-        // ...
-    }
-    ```  
+This package makes use of [Laravels package auto-discovery mechanism](https://medium.com/@taylorotwell/package-auto-discovery-in-laravel-5-5-ea9e3ab20518) so **there is no need to do any futher steps** - skip directly to the [usage](#usage) section below. If for some reason you wish to opt-out of package auto discovery, check [the Laravel Docs](https://laravel.com/docs/8.x/packages#opting-out-of-package-discovery) for more details.
 
 ### Lumen
 
-If you use Lumen add the following service provider in `bootstrap/app.php`:
+NOTE: Lumen is **not** officially supported by this package. However, we are currently not aware of any incompatibilities.
+
+If you use Lumen register the service provider in `bootstrap/app.php` like so:
 
 ```php
 <?php

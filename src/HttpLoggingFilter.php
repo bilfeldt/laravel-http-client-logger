@@ -14,7 +14,7 @@ class HttpLoggingFilter implements HttpLoggingFilterInterface
         array $context = [],
         array $config = []
     ): bool {
-        if (! config('http-client-logger.enabled')) {
+        if (!config('http-client-logger.enabled')) {
             return false;
         }
 

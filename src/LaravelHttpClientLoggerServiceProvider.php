@@ -14,7 +14,7 @@ class LaravelHttpClientLoggerServiceProvider extends PackageServiceProvider
      *
      * More info: https://github.com/spatie/laravel-package-tools
      *
-     * @param  Package  $package
+     * @param Package $package
      */
     public function configurePackage(Package $package): void
     {

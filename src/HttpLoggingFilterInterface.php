@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Bilfeldt\LaravelHttpClientLogger;
 
 use Psr\Http\Message\RequestInterface;

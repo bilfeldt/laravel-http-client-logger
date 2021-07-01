@@ -24,6 +24,7 @@ class LoggingMiddleware
      * Called when the middleware is handled by the client.
      *
      * @param array $context
+     *
      * @return callable
      */
     public function __invoke($context = [], $config = []): callable

@@ -79,8 +79,8 @@ return [
     | Note that these settings are only used by the default logger.
     |
     */
-    'disk' => env('HTTP_CLIENT_LOGGER_DISK', false),
+    'disk'                => env('HTTP_CLIENT_LOGGER_DISK', false),
     'disk_separate_files' => true,
-    'prefix_timestamp' => 'Y-m-d-Hisu', // Leaving empty will remove the timestamp
-    'filename' => '',
+    'prefix_timestamp'    => 'Y-m-d-Hisu', // Leaving empty will remove the timestamp
+    'filename'            => '',
 ];

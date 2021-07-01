@@ -51,6 +51,9 @@ The following changes are required when updating:
 
 ## Changes
 
+### 1.0.1
+- Add unofficial support for Lumen
+
 ### 1.0.0
 
 - Release first stable release

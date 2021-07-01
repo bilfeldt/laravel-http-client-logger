@@ -18,7 +18,29 @@ You can install the package via composer:
 composer require bilfeldt/laravel-http-client-logger
 ```
 
-Optionally publish the config file with:
+### Laravel
+
+This package makes use of [Laravels package auto-discovery mechanism](https://medium.com/@taylorotwell/package-auto-discovery-in-laravel-5-5-ea9e3ab20518) so **there is no need to do any futher steps** - skip directly to the [usage](#usage) section below. If for some reason you wish to opt-out of package auto discovery, check [the Laravel Docs](https://laravel.com/docs/8.x/packages#opting-out-of-package-discovery) for more details.
+
+### Lumen
+
+NOTE: Lumen is **not** officially supported by this package. However, we are currently not aware of any incompatibilities.
+
+If you use Lumen register the service provider in `bootstrap/app.php` like so:
+
+```php
+<?php
+// bootstrap/app.php
+
+$app->register(Bilfeldt\LaravelHttpClientLogger\LaravelHttpClientLoggerServiceProvider::class);
+
+// If you want to use the Facades provided by the package
+$app->withFacades();
+```
+
+### Config
+
+Optionally in Laravel publish the config file with:
 ```bash
 php artisan vendor:publish --provider="Bilfeldt\LaravelHttpClientLogger\LaravelHttpClientLoggerServiceProvider" --tag="laravel-http-client-logger-config"
 ```

@@ -3,6 +3,7 @@
 namespace Bilfeldt\LaravelHttpClientLogger;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -54,7 +55,7 @@ class HttpLogger implements HttpLoggerInterface
 
     protected function getFileName(): string
     {
-        return (Arr::get($this->config, 'prefix_timestamp') ? now()->format(Arr::get($this->config, 'prefix_timestamp')) : '')
+        return (Arr::get($this->config, 'prefix_timestamp') ? Date::now()->format(Arr::get($this->config, 'prefix_timestamp')) : '')
             .Arr::get($this->config, 'filename');
     }
 

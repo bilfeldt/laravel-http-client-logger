@@ -38,8 +38,8 @@ class LaravelHttpClientLoggerServiceProvider extends PackageServiceProvider
         ) {
             /** @var \Illuminate\Http\Client\PendingRequest $this */
             return $this->withMiddleware((new LoggingMiddleware(
-                $logger ?? resolve(HttpLoggerInterface::class),
-                $filter ?? resolve(HttpLoggingFilterInterface::class)
+                $logger ?? app(HttpLoggerInterface::class),
+                $filter ?? app(HttpLoggingFilterInterface::class)
             ))->__invoke($context, $config));
         });
 

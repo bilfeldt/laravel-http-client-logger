@@ -81,6 +81,8 @@ The default logger and filter are specified in the package configuration `logger
 Http::log($context, $config, $logger, $filter)->get('https://example.com');
 // or
 Http::logWhen($condition, $context, $config, $logger, $filter)->get('https://example.com');
+// or the shorthand syntax which will use the LogAllFilter
+Http::logWith($logger)->get('https://example.com');
 ```
 Note that the logger must implement `HttpLoggerInterface` while the filter must implement `HttpLoggingFilterInterface`.
 

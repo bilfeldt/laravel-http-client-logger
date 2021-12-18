@@ -147,7 +147,7 @@ class MessageAccessorTest extends TestCase
 
     public function test_filter_message()
     {
-        $request = $this->messageAccessor->filter($this->request);
+        $request = $this->messageAccessor->filterMessage($this->request);
 
         // Note that it is required to use double quotes for the Carriage Return (\r) to work and have it on one line to pass on Windows
         $output = "POST /some-path/secret/should-not-be-removed?test=true&search=foo&filter%5Bfield1%5D=A&filter%5Bfield2%5D=B HTTP/1.1\r\nHost: ********.example.com:9000\r\nAccept: application/json\r\nContent-Type: application/json\r\nAuthorization: ********\r\n\r\n{\"data\":{\"foo\":\"bar\",\"baz\":[{\"field_1\":\"value1\",\"field_2\":\"value2\",\"password\":\"********\",\"secret\":\"this is not for everyone\"}]}}";

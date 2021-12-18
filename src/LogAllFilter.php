@@ -13,8 +13,7 @@ class LogAllFilter implements HttpLoggingFilterInterface
         float $sec,
         array $context = [],
         array $config = []
-    ): bool
-    {
+    ): bool {
         return true;
     }
 }

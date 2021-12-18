@@ -138,6 +138,7 @@ class MessageAccessor
     {
         /** @var RequestInterface $filtered */
         $filtered = $this->filterMessage($request);
+
         return $filtered->withUri($this->getUri($request));
     }
 

@@ -145,12 +145,22 @@ class MessageAccessorTest extends TestCase
         ]), $content);
     }
 
-    public function test_filter()
+    public function test_filter_message()
     {
         $request = $this->messageAccessor->filter($this->request);
 
         // Note that it is required to use double quotes for the Carriage Return (\r) to work and have it on one line to pass on Windows
         $output = "POST /some-path/secret/should-not-be-removed?test=true&search=foo&filter%5Bfield1%5D=A&filter%5Bfield2%5D=B HTTP/1.1\r\nHost: ********.example.com:9000\r\nAccept: application/json\r\nContent-Type: application/json\r\nAuthorization: ********\r\n\r\n{\"data\":{\"foo\":\"bar\",\"baz\":[{\"field_1\":\"value1\",\"field_2\":\"value2\",\"password\":\"********\",\"secret\":\"this is not for everyone\"}]}}";
+
+        $this->assertEquals($output, Message::toString($request));
+    }
+
+    public function test_filter_request()
+    {
+        $request = $this->messageAccessor->filterRequest($this->request);
+
+        // Note that it is required to use double quotes for the Carriage Return (\r) to work and have it on one line to pass on Windows
+        $output = "POST /some-path/********/should-not-be-removed?test=true&search=%2A%2A%2A%2A%2A%2A%2A%2A&filter%5Bfield1%5D=A&filter%5Bfield2%5D=%2A%2A%2A%2A%2A%2A%2A%2A HTTP/1.1\r\nHost: ********.example.com:9000\r\nAccept: application/json\r\nContent-Type: application/json\r\nAuthorization: ********\r\n\r\n{\"data\":{\"foo\":\"bar\",\"baz\":[{\"field_1\":\"value1\",\"field_2\":\"value2\",\"password\":\"********\",\"secret\":\"this is not for everyone\"}]}}";
 
         $this->assertEquals($output, Message::toString($request));
     }

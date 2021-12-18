@@ -122,7 +122,7 @@ class MessageAccessor
         return $body;
     }
 
-    public function filter(MessageInterface $message): MessageInterface
+    public function filterMessage(MessageInterface $message): MessageInterface
     {
         $body = $this->getContent($message);
 
@@ -130,7 +130,15 @@ class MessageAccessor
             $message = $message->withHeader($header, $values);
         }
 
-        return $message->withBody(Utils::streamFor($body));
+        return $message
+            ->withBody(Utils::streamFor($body));
+    }
+
+    public function filterRequest(RequestInterface $request): RequestInterface
+    {
+        /** @var RequestInterface $filtered */
+        $filtered = $this->filterMessage($request);
+        return $filtered->withUri($this->getUri($request));
     }
 
     protected function replaceParameters(array $array, array $parameters, array $values, string $replace, $strict = true): array

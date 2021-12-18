@@ -9,17 +9,17 @@ class MacroTest extends TestCase
         // TODO: Implement
     }
 
-    public function test_log_with_context()
+    public function test_log_parameter_context()
     {
         // TODO: Implement
     }
 
-    public function test_log_with_config()
+    public function test_log_parameter_config()
     {
         // TODO: Implement
     }
 
-    public function test_log_with_logger()
+    public function test_log_parameter_logger()
     {
         // TODO: Implement
     }
@@ -60,6 +60,11 @@ class MacroTest extends TestCase
     }
 
     public function test_log_when_with_logger()
+    {
+        // TODO: Implement
+    }
+
+    public function test_log_with()
     {
         // TODO: Implement
     }

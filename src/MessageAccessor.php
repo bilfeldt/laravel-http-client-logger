@@ -18,12 +18,12 @@ class MessageAccessor
     private string $replace;
 
     public function __construct(
-        array  $values = [],
-        array  $queryFilters = [],
-        array  $headersFilters = [],
-        array  $jsonFilers = [],
+        array $values = [],
+        array $queryFilters = [],
+        array $headersFilters = [],
+        array $jsonFilers = [],
         string $replace = '********'
-    ){
+    ) {
         $this->values = $values;
         $this->queryFilters = $queryFilters;
         $this->headersFilters = $headersFilters;
@@ -49,16 +49,16 @@ class MessageAccessor
 
         $base = '';
         if ($uri->getScheme()) {
-            $base .= $uri->getScheme() . '://';
+            $base .= $uri->getScheme().'://';
         }
         if ($uri->getUserInfo()) {
-            $base .= $uri->getUserInfo() . '@';
+            $base .= $uri->getUserInfo().'@';
         }
         if ($uri->getHost()) {
             $base .= $uri->getHost();
         }
         if ($uri->getPort()) {
-            $base .= ':' . $uri->getPort();
+            $base .= ':'.$uri->getPort();
         }
 
         return $base;
@@ -87,7 +87,9 @@ class MessageAccessor
      * Determine if the request is JSON.
      *
      * @see vendor/laravel/framework/src/Illuminate/Http/Client/Request.php
+     *
      * @param MessageInterface $message
+     *
      * @return bool
      */
     public function isJson(MessageInterface $message): bool
@@ -112,7 +114,7 @@ class MessageAccessor
             $body = json_encode($this->getJson($message));
         } else {
             $body = $message->getBody()->__toString();
-            foreach($this->values as $value) {
+            foreach ($this->values as $value) {
                 $body = str_replace($value, $this->replace, $body);
             }
         }
@@ -139,9 +141,9 @@ class MessageAccessor
             }
         }
 
-        array_walk_recursive( $array, function (&$item) use ($values, $replace, $strict) {
+        array_walk_recursive($array, function (&$item) use ($values, $replace, $strict) {
             foreach ($values as $value) {
-                if (! $strict && str_contains($item, $value)) {
+                if (!$strict && str_contains($item, $value)) {
                     $item = str_replace($value, $replace, $item);
                 } elseif ($strict && $value === $item) {
                     $item = $replace;

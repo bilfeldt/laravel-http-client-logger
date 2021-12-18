@@ -30,8 +30,8 @@ class MessageAccessorTest extends TestCase
             'POST',
             'https://user:secret@secret.example.com:9000/some-path/secret/should-not-be-removed?test=true&search=foo&filter[field1]=A&filter[field2]=B#anchor',
             [
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json',
+                'Accept'        => 'application/json',
+                'Content-Type'  => 'application/json',
                 'Authorization' => 'Bearer 1234567890',
             ],
             json_encode([
@@ -39,12 +39,12 @@ class MessageAccessorTest extends TestCase
                     'foo' => 'bar',
                     'baz' => [
                         [
-                            'field_1' => 'value1',
-                            'field_2' => 'value2',
+                            'field_1'  => 'value1',
+                            'field_2'  => 'value2',
                             'password' => '123456',
-                            'secret' => 'this is not for everyone',
-                        ]
-                    ]
+                            'secret'   => 'this is not for everyone',
+                        ],
+                    ],
                 ],
             ])
         );
@@ -66,8 +66,10 @@ class MessageAccessorTest extends TestCase
 
     public function test_get_base()
     {
-        $this->assertEquals('https://user:********@********.example.com:9000',
-            urldecode($this->messageAccessor->getBase($this->request)));
+        $this->assertEquals(
+            'https://user:********@********.example.com:9000',
+            urldecode($this->messageAccessor->getBase($this->request))
+        );
     }
 
     public function test_get_query()
@@ -76,7 +78,7 @@ class MessageAccessorTest extends TestCase
 
         $this->assertIsArray($query);
         $this->assertEquals([
-            'test' => 'true',
+            'test'   => 'true',
             'search' => '********',
             'filter' => [
                 'field1' => 'A',
@@ -91,10 +93,10 @@ class MessageAccessorTest extends TestCase
 
         $this->assertIsArray($headers);
         $this->assertEquals([
-            'Accept' => ['application/json'],
-            'Content-Type' => ['application/json'],
+            'Accept'        => ['application/json'],
+            'Content-Type'  => ['application/json'],
             'Authorization' => ['********'],
-            'Host' => ['********.example.com:9000'],
+            'Host'          => ['********.example.com:9000'],
         ], $headers);
     }
 
@@ -114,12 +116,12 @@ class MessageAccessorTest extends TestCase
                 'foo' => 'bar',
                 'baz' => [
                     [
-                        'field_1' => 'value1',
-                        'field_2' => 'value2',
+                        'field_1'  => 'value1',
+                        'field_2'  => 'value2',
                         'password' => '********',
-                        'secret' => 'this is not for everyone', // Note that keys are NOT filtered
-                    ]
-                ]
+                        'secret'   => 'this is not for everyone', // Note that keys are NOT filtered
+                    ],
+                ],
             ],
         ], $json);
     }
@@ -133,12 +135,12 @@ class MessageAccessorTest extends TestCase
                 'foo' => 'bar',
                 'baz' => [
                     [
-                        'field_1' => 'value1',
-                        'field_2' => 'value2',
+                        'field_1'  => 'value1',
+                        'field_2'  => 'value2',
                         'password' => '********',
-                        'secret' => 'this is not for everyone', // Note that keys are NOT filtered
-                    ]
-                ]
+                        'secret'   => 'this is not for everyone', // Note that keys are NOT filtered
+                    ],
+                ],
             ],
         ]), $content);
     }

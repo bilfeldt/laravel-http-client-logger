@@ -20,10 +20,10 @@ class MessageAccessorTest extends TestCase
         parent::setUp();
 
         $this->messageAccessor = new MessageAccessor(
-            ['secret'],
+            ['data.baz.*.password'],
             ['search', 'filter.field2'],
             ['Authorization'],
-            ['data.baz.*.password']
+            ['secret'],
         );
 
         $this->request = new Request(

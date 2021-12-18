@@ -18,10 +18,10 @@ class MessageAccessor
     private string $replace;
 
     public function __construct(
-        array $values = [],
+        array $jsonFilers = [],
         array $queryFilters = [],
         array $headersFilters = [],
-        array $jsonFilers = [],
+        array $values = [],
         string $replace = '********'
     ) {
         $this->values = $values;

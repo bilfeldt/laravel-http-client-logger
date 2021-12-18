@@ -99,7 +99,7 @@ class MessageAccessor
     public function getJson(MessageInterface $message): ?array
     {
         return $this->replaceParameters(
-            json_decode($message->getBody(), true),
+            json_decode($message->getBody()->__toString(), true),
             $this->jsonFilters,
             $this->values,
             $this->replace
@@ -111,9 +111,9 @@ class MessageAccessor
         if ($this->isJson($message)) {
             $body = json_encode($this->getJson($message));
         } else {
-            $body = $message->getBody()->getContents();
+            $body = $message->getBody()->__toString();
             foreach($this->values as $value) {
-                $body = $this->replace($value, $this->replace, $body);
+                $body = str_replace($value, $this->replace, $body);
             }
         }
 
@@ -122,14 +122,7 @@ class MessageAccessor
 
     public function filter(MessageInterface $message): MessageInterface
     {
-        if ($this->isJson($message)) {
-            $body = json_encode($this->getJson($message));
-        } else {
-            $body = $message->getBody()->getContents();
-            foreach ($this->values as $value) {
-                $body = $this->replace($value, $this->replace, $body);
-            }
-        }
+        $body = $this->getContent($message);
 
         foreach ($this->getHeaders($message) as $header => $values) {
             $message = $message->withHeader($header, $values);
@@ -146,7 +139,7 @@ class MessageAccessor
             }
         }
 
-        array_walk_recursive( $array, function (&$item, $key) use ($values, $replace, $strict) {
+        array_walk_recursive( $array, function (&$item) use ($values, $replace, $strict) {
             foreach ($values as $value) {
                 if (! $strict && str_contains($item, $value)) {
                     $item = str_replace($value, $replace, $item);

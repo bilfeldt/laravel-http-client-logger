@@ -51,9 +51,16 @@ The following changes are required when updating:
 
 ## Changes
 
-### 1.1.0
+### 1.2.0
 
 - Add Laravel 9 support
+
+### 1.1.0
+
+- Implement new MessageAccessor class by @bilfeldt in #13
+- Implement a new logWith-method + a LogAllFilter class and a NullLogger by @bilfeldt in #15
+- Apply fixes from StyleCI by @bilfeldt in #11
+- Apply fixes from StyleCI by @bilfeldt in #14
 
 ### 1.0.1
 

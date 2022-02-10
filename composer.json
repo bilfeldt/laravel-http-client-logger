@@ -31,7 +31,7 @@
         "orchestra/testbench": "^7.0",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ray": "^1.29",
-        "timacdonald/log-fake": "dev-l9-compatibility",
+        "timacdonald/log-fake": "dev-return-types",
         "vimeo/psalm": "^4.20"
     },
     "autoload": {
@@ -47,7 +47,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/laravel-shift/log-fake.git"
+            "url": "https://github.com/bilfeldt/log-fake.git"
         }
     ],
     "scripts": {

@@ -84,16 +84,16 @@ class HttpLogger implements HttpLoggerInterface
     protected function logToDisk(string $disk): void
     {
         if (Arr::get($this->config, 'disk_separate_files')) {
-            Storage::disk($disk)->put(
+            Storage::disk($disk)->append(
                 $this->getFileName().'-request'.Str::start($this->fileExt, '.'),
                 $this->psrMessageStringConverter->toString($this->request, $this->getReplace())
             );
-            Storage::disk($disk)->put(
+            Storage::disk($disk)->append(
                 $this->getFileName().'-response'.Str::start($this->fileExt, '.'),
                 $this->psrMessageStringConverter->toString($this->response, $this->getReplace())
             );
         } else {
-            Storage::disk($disk)->put(
+            Storage::disk($disk)->append(
                 $this->getFileName().Str::start($this->fileExt, '.'),
                 $this->getMessage()
             );

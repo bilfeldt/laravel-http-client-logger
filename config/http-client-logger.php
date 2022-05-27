@@ -83,4 +83,5 @@ return [
     'disk_separate_files' => true,
     'prefix_timestamp'    => 'Y-m-d-Hisu', // Leaving empty will remove the timestamp
     'filename'            => '',
+    'prefix'              => '',
 ];

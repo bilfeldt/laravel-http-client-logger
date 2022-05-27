@@ -51,6 +51,11 @@ The following changes are required when updating:
 
 ## Changes
 
+### 1.2.1
+
+- Append instead of override when writign to a log file by @afiqiqmal in #21
+- Add Prefix Config by @afiqiqmal in #20
+
 ### 1.2.0
 
 - Add Laravel 9 support

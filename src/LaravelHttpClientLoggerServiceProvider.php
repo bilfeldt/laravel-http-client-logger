@@ -35,7 +35,7 @@ class LaravelHttpClientLoggerServiceProvider extends PackageServiceProvider
             $config = [],
             ?HttpLoggerInterface $logger = null,
             ?HttpLoggingFilterInterface $filter = null
-        ) {
+        ): PendingRequest {
             /** @var \Illuminate\Http\Client\PendingRequest $this */
             return $this->withMiddleware((new LoggingMiddleware(
                 $logger ?? app(HttpLoggerInterface::class),
@@ -49,7 +49,7 @@ class LaravelHttpClientLoggerServiceProvider extends PackageServiceProvider
             $config = [],
             ?HttpLoggerInterface $logger = null,
             ?HttpLoggingFilterInterface $filter = null
-        ) {
+        ): PendingRequest {
             if (value($condition)) {
                 /** @var \Illuminate\Http\Client\PendingRequest $this */
                 return $this->log($context, $config, $logger, $filter);
@@ -59,7 +59,7 @@ class LaravelHttpClientLoggerServiceProvider extends PackageServiceProvider
             }
         });
 
-        PendingRequest::macro('logWith', function (HttpLoggerInterface $logger = null) {
+        PendingRequest::macro('logWith', function (HttpLoggerInterface $logger = null): PendingRequest {
             /** @var \Illuminate\Http\Client\PendingRequest $this */
             return $this->withMiddleware((new LoggingMiddleware($logger, new LogAllFilter()))->__invoke());
         });

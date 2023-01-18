@@ -51,6 +51,10 @@ The following changes are required when updating:
 
 ## Changes
 
+### 1.3.0
+
+- Added return types for better IDE completion by @shahruslan in #24
+
 ### 1.2.1
 
 - Append instead of override when writign to a log file by @afiqiqmal in #21

@@ -20,18 +20,18 @@
         }
     ],
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "~8.2.0 | ~8.1.0",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.2",
-        "illuminate/http": "^8.0 || ^9.0",
-        "illuminate/support": "^8.0 || ^9.0",
+        "illuminate/http": "^9.0 || ^10.0",
+        "illuminate/support": "^9.0 || ^10.0",
         "spatie/laravel-package-tools": "^1.1"
     },
     "require-dev": {
         "orchestra/testbench": "^7.0",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ray": "^1.29",
-        "timacdonald/log-fake": "dev-return-types",
+        "timacdonald/log-fake": "^2.0",
         "vimeo/psalm": "^4.20"
     },
     "autoload": {
@@ -44,12 +44,6 @@
             "Bilfeldt\\LaravelHttpClientLogger\\Tests\\": "tests"
         }
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/bilfeldt/log-fake.git"
-        }
-    ],
     "scripts": {
         "psalm": "vendor/bin/psalm",
         "test": "vendor/bin/phpunit --colors=always",

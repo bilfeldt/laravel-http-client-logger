@@ -4,6 +4,10 @@ All notable changes to `laravel-http-client-logger` will be documented in this f
 
 ## Upgrade guides
 
+### 1.* => 2.
+
+No breaking changes. The only changes are to the development dependencies used for testing and then the minimum Laravel and PHP requirements.
+
 ### 0.3.0 => 1.0.0
 
 This release flattens the configuration variables. It is suggested to republish the configuration after upgrading.
@@ -50,6 +54,13 @@ The following changes are required when updating:
 - Optional: Republish configuration file
 
 ## Changes
+
+### 2.0.0
+
+- Minimum PHP requirement 8.1
+- Add support for PHP 8.2
+- Minimum Laravel requirement 9.0
+- Add support for Laravel 10.*
 
 ### 1.3.0
 

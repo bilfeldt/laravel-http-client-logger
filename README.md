@@ -10,6 +10,11 @@
 
 An easy yet very flexible logger for the Laravel HTTP Client.
 
+| Version | Laravel     | PHP            |
+|---------|-------------|----------------|
+| 1.*     | 8.* \| 9.*  | 7.4.* \| 8.0.* |
+| 2.*     | 9.* \| 10.* | 8.1.* \| 8.2.* |
+
 ## Installation
 
 You can install the package via composer:

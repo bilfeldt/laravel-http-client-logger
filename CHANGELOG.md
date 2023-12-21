@@ -55,6 +55,10 @@ The following changes are required when updating:
 
 ## Changes
 
+### 2.1.0
+
+- Add PHP 8.2 support
+
 ### 2.0.0
 
 - Minimum PHP requirement 8.1

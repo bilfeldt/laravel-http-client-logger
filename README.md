@@ -47,7 +47,7 @@ $app->withFacades();
 
 Optionally in Laravel publish the config file with:
 ```bash
-php artisan vendor:publish --provider="Bilfeldt\LaravelHttpClientLogger\LaravelHttpClientLoggerServiceProvider" --tag="laravel-http-client-logger-config"
+php artisan vendor:publish --provider="Bilfeldt\LaravelHttpClientLogger\LaravelHttpClientLoggerServiceProvider" --tag="http-client-logger-config"
 ```
 
 ## Usage

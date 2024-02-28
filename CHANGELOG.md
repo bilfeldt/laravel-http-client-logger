@@ -55,9 +55,13 @@ The following changes are required when updating:
 
 ## Changes
 
+### 2.2.0
+
+- Add Laravel 11 support
+
 ### 2.1.0
 
-- Add PHP 8.2 support
+- Add PHP 8.3 support
 
 ### 2.0.0
 

@@ -48,6 +48,26 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Replace sensitive data with a placeholder before logging
+    |--------------------------------------------------------------------------
+    |
+    | These settings determine what data should be replaced with a placeholder.
+    |
+    | - replace_values contains an array of strings that will be replaced anywhere in the request/response
+    | - replace_headers contains an array of header names whose values are replaced with placeholders
+    | - replace_query contains an array of query parameter names whose values are replaced with placeholders
+    */
+    'replace_values' => [],
+
+    'replace_headers' => [],
+
+    'replace_query' => [],
+
+    'replace_json' => [],
+
+
+    /*
+    |--------------------------------------------------------------------------
     | Logger class
     |--------------------------------------------------------------------------
     |

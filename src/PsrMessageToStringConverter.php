@@ -9,9 +9,9 @@ use Psr\Http\Message\MessageInterface;
 
 class PsrMessageToStringConverter
 {
-    public function toString(MessageInterface $message, array $placeholders): string
+    public function toString(MessageInterface $message, array $replace): string
     {
-        return strtr(Message::toString($message), $placeholders);
+        return strtr(Message::toString($message), $replace);
     }
 
     public function toRequest(string $message): Request

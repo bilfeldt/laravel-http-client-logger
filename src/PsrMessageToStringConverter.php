@@ -19,6 +19,7 @@ class PsrMessageToStringConverter
     public function toString(MessageInterface $message, array $replace): string
     {
         $filteredMessage = $message instanceof Request ? $this->messageAccessor->filterRequest($message) : $this->messageAccessor->filterMessage($message);
+
         return strtr(Message::toString($filteredMessage), $replace);
     }
 

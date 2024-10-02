@@ -4,11 +4,8 @@ namespace Bilfeldt\LaravelHttpClientLogger\Tests;
 
 use Bilfeldt\LaravelHttpClientLogger\MessageAccessor;
 use Bilfeldt\LaravelHttpClientLogger\PsrMessageToStringConverter;
-use GuzzleHttp\Psr7\Message;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 
 class PsrMessageToStringConverterTest extends TestCase
 {
@@ -42,11 +39,11 @@ class PsrMessageToStringConverterTest extends TestCase
                     'foo' => 'bar',
                     'baz' => [
                         [
-                            'field_1'  => 'value1',
-                            'field_2'  => 'value2',
-                            'password' => '123456',
-                            'secret'   => 'this is not for everyone',
-                            'legacy_replace'   => 'replace array is also still used'
+                            'field_1'          => 'value1',
+                            'field_2'          => 'value2',
+                            'password'         => '123456',
+                            'secret'           => 'this is not for everyone',
+                            'legacy_replace'   => 'replace array is also still used',
                         ],
                     ],
                 ],
@@ -56,7 +53,7 @@ class PsrMessageToStringConverterTest extends TestCase
 
     public function test_to_string_replaces_sensitive_data()
     {
-        $string = $this->converter->toString($this->request, [ 'legacy_replace' => '********']);
+        $string = $this->converter->toString($this->request, ['legacy_replace' => '********']);
 
         $this->assertStringContainsString(
             'POST /some-path/********/should-not-be-removed?test=true&search=%2A%2A%2A%2A%2A%2A%2A%2A',

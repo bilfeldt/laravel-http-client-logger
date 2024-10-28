@@ -38,12 +38,17 @@ class HttpLogger implements HttpLoggerInterface
         $this->sec = $sec;
         $this->context = $context;
 
-        // ad-hoc config is not supported for message accessor settings: replace_json, replace_query, replace_headers, replace_values.
-        if (Arr::hasAny($config, ['replace_json', 'replace_query', 'replace_headers', 'replace_values'])) {
-            throw new \InvalidArgumentException('Ad-hoc config does not support replace_json, replace_query, replace_headers, replace_values.');
-        }
-
         $this->config = array_merge(config('http-client-logger'), $config);
+
+        // set up custom message accessor based on current config
+        $messageAccessorClass = $this->config['message_accessor_class'] ?? MessageAccessor::class;
+        $messageAccessor = new $messageAccessorClass(
+            $this->config['replace_json'] ?? [],
+            $this->config['replace_query'] ?? [],
+            $this->config['replace_headers'] ?? [],
+            $this->config['replace_values'] ?? [],
+        );
+        $this->psrMessageStringConverter->setMessageAccessor($messageAccessor);
 
         if (Arr::get($this->config, 'channel')) {
             $this->logToChannel(($channel = Arr::get($this->config, 'channel')) == 'default' ? config('logging.default') : $channel);

@@ -61,6 +61,12 @@ class PsrMessageToStringConverterTest extends TestCase
             'sensitive data not replaced in URI'
         );
 
+        $this->assertStringNotContainsString(
+            '123456',
+            $string,
+            'sensitive data not replaced in json'
+        );
+
         $this->assertStringContainsString(
             'Host: ********.example.com:9000',
             $string,

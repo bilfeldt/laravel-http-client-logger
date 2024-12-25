@@ -30,9 +30,7 @@
     "require-dev": {
         "orchestra/testbench": "^7.0 || ^8.0 || ^9.0",
         "phpunit/phpunit": "^9.5.10 || ^10.0",
-        "spatie/laravel-ray": "^1.29",
-        "timacdonald/log-fake": "^2.0",
-        "vimeo/psalm": "^4.20"
+        "timacdonald/log-fake": "^2.0"
     },
     "autoload": {
         "psr-4": {

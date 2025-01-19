@@ -80,6 +80,26 @@ Http::log($context, ['example-config-key' => 'value'])->get('https://example.com
 Http::logWhen($condition, $context, ['example-config-key' => 'value'])->get('https://example.com');
 ```
 
+### Removing sensitive data from logs
+
+Sensitive information should be masked or replaced with placeholders before being written to log files. The configuration allows you to replace header values, query parameters, and specific strings in the response. You can also define custom, on-demand configurations to remove sensitive data.
+
+For example:
+
+```php
+Http::log([], [
+        'replace' => ['3566002020360505' => '************0505'],
+        'replace_headers' => ['Authorization']
+    ])
+    ->withToken('my-token')
+    ->post('https://www.example.com/verify-credit-card', ['card' => '3566002020360505']);
+```
+
+In this case:
+
+-   The authorization token is completely removed from the logs.
+-   The credit card number is partially masked, preserving only the last four digits (`************0505`).
+
 ### Specifying a logger
 The default logger and filter are specified in the package configuration `logger` and `filter` respectively but can be changed at runtime using:
 ```php

@@ -25,6 +25,18 @@ return [
     */
     'enabled' => env('HTTP_CLIENT_LOGGER_ENABLED', true),
 
+     /*
+    |--------------------------------------------------------------------------
+    | Global logging
+    |--------------------------------------------------------------------------
+    |
+    | Whether or not logging should be globally enabled when using the option
+    | specified below. Filters will stil be applied at runtime and will not
+    | override this setting.
+    |
+    */
+    'global' => env('HTTP_CLIENT_GLOBAL_LOGGING_ENABLED', false),
+
     /*
     |--------------------------------------------------------------------------
     | Filtering options

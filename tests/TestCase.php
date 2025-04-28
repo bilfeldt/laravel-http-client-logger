@@ -9,8 +9,6 @@ abstract class TestCase extends Orchestra
 {
     public function setUp(): void
     {
-        ray()->newScreen("Test {$this->getName()}");
-
         parent::setUp();
 
         config()->set('http-client-logger.filter_2xx', true);

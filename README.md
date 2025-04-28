@@ -3,17 +3,15 @@
 ![bilfeldt/laravel-http-client-logger](cover.jpg)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/bilfeldt/laravel-http-client-logger)](https://packagist.org/packages/bilfeldt/laravel-http-client-logger)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/bilfeldt/laravel-http-client-logger/run-tests?label=tests)](https://github.com/bilfeldt/laravel-http-client-logger/actions?query=workflow%3ATests+branch%3Amaster)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/bilfeldt/laravel-http-client-logger/Check%20&%20fix%20styling?label=code%20style)](https://github.com/bilfeldt/laravel-http-client-logger/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
-[![Total Downloads](https://img.shields.io/packagist/dt/bilfeldt/laravel-http-client-logger)](https://packagist.org/packages/bilfeldt/laravel-http-client-logger)
+[![GitHub Tests Action Status](https://github.com/bilfeldt/laravel-http-client-logger/actions/workflows/run-tests.yml/badge.svg)](https://github.com/bilfeldt/laravel-http-client-logger/actions/workflows/run-tests.yml)
 
 
 An easy yet very flexible logger for the Laravel HTTP Client.
 
-| Version | Laravel             | PHP                     |
-|---------|---------------------|-------------------------|
-| 1.*     | 8.* \| 9.*          | 7.4.* \| 8.0.*          |
-| 2.*     | 9.* \| 10.* \| 11.* | 8.1.* \| 8.2.* \| 8.3.* |
+| Version | Laravel                     | PHP                              |
+|---------|-----------------------------|----------------------------------|
+| 1.*     | 8.* \| 9.*                  | 7.4.* \| 8.0.*                   |
+| 2.*     | 9.* \| 10.* \| 11.* \| 12.* | 8.1.* \| 8.2.* \| 8.3.* \| 8.4.* |
 
 ## Installation
 

@@ -79,5 +79,14 @@ class LaravelHttpClientLoggerServiceProvider extends PackageServiceProvider
         $this->app->bind(HttpLoggingFilterInterface::class, function ($app) {
             return $app->make(config('http-client-logger.filter'));
         });
+
+        $this->app->singleton(MessageAccessor::class, function ($app) {
+            return new MessageAccessor(
+                config('http-client-logger.replace_json', []),
+                config('http-client-logger.replace_query', []),
+                config('http-client-logger.replace_headers', []),
+                config('http-client-logger.replace_values', []),
+            );
+        });
     }
 }

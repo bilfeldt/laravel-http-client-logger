@@ -9,9 +9,23 @@ use Psr\Http\Message\MessageInterface;
 
 class PsrMessageToStringConverter
 {
-    public function toString(MessageInterface $message, array $placeholders): string
+    protected MessageAccessor $messageAccessor;
+
+    public function __construct(MessageAccessor $messageAccessor)
     {
-        return strtr(Message::toString($message), $placeholders);
+        $this->messageAccessor = $messageAccessor;
+    }
+
+    public function setMessageAccessor(MessageAccessor $messageAccessor): void
+    {
+        $this->messageAccessor = $messageAccessor;
+    }
+
+    public function toString(MessageInterface $message, array $replace): string
+    {
+        $filteredMessage = $message instanceof Request ? $this->messageAccessor->filterRequest($message) : $this->messageAccessor->filterMessage($message);
+
+        return strtr(Message::toString($filteredMessage), $replace);
     }
 
     public function toRequest(string $message): Request

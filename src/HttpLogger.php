@@ -37,7 +37,18 @@ class HttpLogger implements HttpLoggerInterface
         $this->response = $response;
         $this->sec = $sec;
         $this->context = $context;
+
         $this->config = array_merge(config('http-client-logger'), $config);
+
+        // set up custom message accessor based on current config
+        $messageAccessorClass = $this->config['message_accessor_class'] ?? MessageAccessor::class;
+        $messageAccessor = new $messageAccessorClass(
+            $this->config['replace_json'] ?? [],
+            $this->config['replace_query'] ?? [],
+            $this->config['replace_headers'] ?? [],
+            $this->config['replace_values'] ?? [],
+        );
+        $this->psrMessageStringConverter->setMessageAccessor($messageAccessor);
 
         if (Arr::get($this->config, 'channel')) {
             $this->logToChannel(($channel = Arr::get($this->config, 'channel')) == 'default' ? config('logging.default') : $channel);

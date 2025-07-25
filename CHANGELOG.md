@@ -55,6 +55,10 @@ The following changes are required when updating:
 
 ## Changes
 
+### 2.4.1 - 2025-07-25
+
+- Fix PHP 8.4 implicitly nullable parameter declarations deprecated warning
+
 ### 2.4.0 - 2025-02-17
 
 - Add Laravel 12 support

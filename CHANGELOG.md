@@ -55,6 +55,10 @@ The following changes are required when updating:
 
 ## Changes
 
+### 2.5.0 - 2025-12-14
+
+- Add PHP 8.5 support
+
 ### 2.4.1 - 2025-07-25
 
 - Fix PHP 8.4 implicitly nullable parameter declarations deprecated warning

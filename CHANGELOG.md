@@ -55,6 +55,10 @@ The following changes are required when updating:
 
 ## Changes
 
+### 2.6.0 - 2026-03-31
+
+- Add Laravel 13 support
+
 ### 2.5.0 - 2025-12-14
 
 - Add PHP 8.5 support

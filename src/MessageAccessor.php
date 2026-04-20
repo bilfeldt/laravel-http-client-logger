@@ -15,20 +15,20 @@ class MessageAccessor
     private array $queryFilters;
     private array $headersFilters;
     private array $jsonFilters;
-    private string $replace;
+    private string $placeholder;
 
     public function __construct(
-        array $jsonFilers = [],
+        array $jsonFilters = [],
         array $queryFilters = [],
         array $headersFilters = [],
         array $values = [],
-        string $replace = '********'
+        string $placeholder = '********'
     ) {
         $this->values = $values;
         $this->queryFilters = $queryFilters;
         $this->headersFilters = $headersFilters;
-        $this->jsonFilters = $jsonFilers;
-        $this->replace = $replace;
+        $this->jsonFilters = $jsonFilters;
+        $this->placeholder = $placeholder;
     }
 
     public function getUri(RequestInterface $request): UriInterface
@@ -37,10 +37,10 @@ class MessageAccessor
         parse_str($uri->getQuery(), $query);
 
         return $uri
-            ->withUserInfo($this->replace($this->values, $this->replace, $uri->getUserInfo()))
-            ->withHost($this->replace($this->values, $this->replace, $uri->getHost()))
-            ->withPath($this->replace($this->values, $this->replace, $uri->getPath()))
-            ->withQuery(Arr::query($this->replaceParameters($query, $this->queryFilters, $this->values, $this->replace)));
+            ->withUserInfo($this->replace($this->values, $this->placeholder, $uri->getUserInfo()))
+            ->withHost($this->replace($this->values, $this->placeholder, $uri->getHost()))
+            ->withPath($this->replace($this->values, $this->placeholder, $uri->getPath()))
+            ->withQuery(Arr::query($this->replaceParameters($query, $this->queryFilters, $this->values, $this->placeholder)));
     }
 
     public function getBase(RequestInterface $request): string
@@ -75,12 +75,12 @@ class MessageAccessor
     {
         foreach ($this->headersFilters as $headersFilter) {
             if ($message->hasHeader($headersFilter)) {
-                $message = $message->withHeader($headersFilter, $this->replace);
+                $message = $message->withHeader($headersFilter, $this->placeholder);
             }
         }
 
         // Header filter applied above as this is an array with two layers
-        return $this->replaceParameters($message->getHeaders(), [], $this->values, $this->replace, false);
+        return $this->replaceParameters($message->getHeaders(), [], $this->values, $this->placeholder, false);
     }
 
     /**
@@ -104,7 +104,7 @@ class MessageAccessor
             json_decode($message->getBody()->__toString(), true),
             $this->jsonFilters,
             $this->values,
-            $this->replace
+            $this->placeholder
         );
     }
 
@@ -115,7 +115,7 @@ class MessageAccessor
         } else {
             $body = $message->getBody()->__toString();
             foreach ($this->values as $value) {
-                $body = str_replace($value, $this->replace, $body);
+                $body = str_replace($value, $this->placeholder, $body);
             }
         }
 
